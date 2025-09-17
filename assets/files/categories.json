@@ -1,0 +1,29 @@
+{
+  "categories": [
+    {
+      "title": "Travel & Stay",
+      "imageUrl": "assets/images/travel.png",
+      "logotype" :"home"
+    },
+    {
+      "title": "Banquets & Venues",
+      "imageUrl": "assets/images/venues.png",
+      "logotype" :"beach_access"
+    },
+    {
+      "title": "Retail",
+      "imageUrl": "assets/images/shopping.png",
+      "logotype" :"shopping_cart"
+    },
+    {
+      "title": "Food & Catering",
+      "imageUrl": "assets/images/breakfast.png",
+      "logotype" :"restaurant"
+    },
+    {
+      "title": "Photography",
+      "imageUrl": "assets/images/camera.png",
+      "logotype" :"camera"
+    }
+  ]
+}
