@@ -13,7 +13,7 @@ class CategoryCard extends StatelessWidget {
       required this.imageUrl,
       required this.title,
       required this.logo_type,
-    }) : super(key: key);
+    }) :assert( imageUrl!="" && title !=""), super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,9 +37,9 @@ class CategoryCard extends StatelessWidget {
           children: [
             Image.asset(
               imageUrl,
-              height: 200,
+              height: 150,
               width: 300,
-              fit: BoxFit.cover,
+              fit: BoxFit.contain,
             ),
             Row(
               children: [
