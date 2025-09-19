@@ -69,7 +69,7 @@ class _VenueFormPageState extends State<VenueFormPage> {
     print('Response Time: $responseTime');
     
   }
-  // Helper function to get month name
+
 
   final List<Map<String, String>> cuisines = [
     {"name": "Indian", "image": "assets/images/food.jpeg"},
@@ -168,46 +168,90 @@ class _VenueFormPageState extends State<VenueFormPage> {
                         ),
                       ),
 
-                      const SizedBox(height: 12),
+                      const SizedBox(height: 18),
 
                       // Event Dropdown
+                      Text(
+                        "Event Types",
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey,
+                        ),
+                      ),
                       EventTypeDropdown(
                         value: eventType,
                         items: eventTypes,
                         onChanged: (val) => setState(() => eventType = val),
                       ),
-                      const SizedBox(height: 12),
+                      const SizedBox(height: 20),
 
                       //Country DropDown
+                      Text(
+                        "Country",
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey,
+                        ),
+                      ),
                       CountryDropdown(
                         value: country,
                         items: countries,
                         onChanged: (val) => setState(() => country = val),
                       ),
 
-                      const SizedBox(height: 12),
+                      const SizedBox(height: 20),
 
-                      //state fropdwn
+                      Text(
+                        "State",
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey,
+                        ),
+                      ),
                       StateDropdown(
                         value: state,
                         items: states,
                         onChanged: (val) => setState(() => state = val),
                       ),
 
-                      // city dropdown
+                      Text(
+                        "City",
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey,
+                        ),
+                      ),
                       CityDropdown(
                         value: city,
                         items: cities,
                         onChanged: (val) => setState(() => city = val),
                       ),
-
-                      const SizedBox(height: 12),
-
+const SizedBox(height: 20),
+                      
+Text(
+                        "Event Dates",
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey,
+                        ),
+                      ),
                       // event date selector
                       EventDatesSelector(dates: eventDates, pickDate: pickDate),
 
-                      const SizedBox(height: 12),
-
+                      const SizedBox(height: 20),
+Text(
+                        "Number of Adults",
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey,
+                        ),
+                      ),
                       // number of adults selector
                       NumberOfAdults(
                         adults: numberOfAdults,
@@ -215,8 +259,17 @@ class _VenueFormPageState extends State<VenueFormPage> {
                             setState(() => numberOfAdults = val),
                       ),
 
-                      const SizedBox(height: 12),
+                      const SizedBox(height: 20),
+
                       // catering options
+                      Text(
+                        "Catering options",
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey,
+                        ),
+                      ),
                       CateringOptions(
                         selected: cateringPreference,
                         onChanged: (val) =>
@@ -225,14 +278,30 @@ class _VenueFormPageState extends State<VenueFormPage> {
                       const SizedBox(height: 12),
 
                       // cuisine selector
+                      Text(
+                        "Select Cuisine",
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey,
+                        ),
+                      ),
                       CuisineSelector(
                         cuisines: cuisines,
                         selected: cuisine,
                         onChanged: (val) => setState(() => cuisine = val),
                       ),
-                      const SizedBox(height: 12),
+                      const SizedBox(height: 20),
 
                       // Budegt definition
+                      Text(
+                        "Your Budget",
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey,
+                        ),
+                      ),
                       BudgetField(
                         budget: budget,
                         currency: selectedCurrency,
@@ -242,6 +311,14 @@ class _VenueFormPageState extends State<VenueFormPage> {
                       ),
 
                       //Response Time selector
+                      Text(
+                        "Response Time (optional)",
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey,
+                        ),
+                      ),
                       ResponseTimeSelector(
                         isFastResponse: isFastResponse,
                         responseTime: responseTime,

@@ -7,7 +7,7 @@ class EventDatesSelector extends StatelessWidget {
     super.key,
     required this.dates,
     required this.pickDate,
-    //required this.onChanged,
+    
   });
 
   String monthName(int month) {
@@ -33,17 +33,9 @@ class EventDatesSelector extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(
-          "Event Dates",
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-            color: Colors.grey,
-          ),
-        ),
         SizedBox(height: 8),
         ...dates.map((d) {
-          // Format date like 1st March 2025
+          
           String daySuffix(int day) {
             if (day >= 11 && day <= 13) return 'th';
             switch (day % 10) {
@@ -91,7 +83,7 @@ class EventDatesSelector extends StatelessWidget {
         GestureDetector(
           onTap: pickDate,
           child: Container(
-            width: double.infinity, // full width
+            width: double.infinity, 
             padding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),

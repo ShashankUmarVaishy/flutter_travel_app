@@ -6,23 +6,15 @@ class ResponseTimeSelector extends StatelessWidget {
   final String? responseTime;
   const ResponseTimeSelector({
     super.key,
-    required this.isFastResponse,  
+    required this.isFastResponse,
     required this.onToggle,
-    required this.responseTime
+    required this.responseTime,
   });
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const Text(
-          "Get offer within (optional)",
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-            color: Colors.grey,
-          ),
-        ),
         GestureDetector(
           onTap: () => onToggle(!isFastResponse),
           child: Container(

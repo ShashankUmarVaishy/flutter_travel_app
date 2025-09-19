@@ -16,15 +16,7 @@ class CityDropdown extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(
-          "City",
-          style: TextStyle(
-            color: Colors.grey,
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        SizedBox(height: 6), // Space between label and dropdown
+        SizedBox(height: 6),
         DropdownButtonFormField<String>(
           initialValue: value,
           decoration: InputDecoration(

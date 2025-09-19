@@ -18,14 +18,6 @@ class BudgetField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const Text(
-          "Budget",
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-            color: Colors.grey,
-          ),
-        ),
         const SizedBox(height: 8),
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
@@ -36,7 +28,7 @@ class BudgetField extends StatelessWidget {
           ),
           child: Row(
             children: [
-              // Expanded numeric input
+             
               Expanded(
                 child: TextFormField(
                   keyboardType: TextInputType.number,
@@ -48,10 +40,10 @@ class BudgetField extends StatelessWidget {
                 ),
               ),
 
-              // Dropdown for currency
+               
               DropdownButton<String>(
                 value: currency,
-                underline: const SizedBox(), // removes default underline
+                underline: const SizedBox(), 
                 items: ["INR", "USD", "EUR", "YEN"].map((currency) {
                   return DropdownMenuItem(
                     value: currency,

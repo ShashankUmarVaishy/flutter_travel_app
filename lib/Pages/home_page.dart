@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:front_end/widgets/category_card.dart';
+import 'package:front_end/widgets/plan_section_home.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -40,7 +41,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Material(
-      //backgroundColor: Colors.grey[200],
+      
       child: Column(
         children: [
           Container(
@@ -64,7 +65,7 @@ class _HomePageState extends State<HomePage> {
             child: Column(
               children: [
                 const SizedBox(height: 22),
-                // Header
+                 
                 Container(
                   padding: const EdgeInsets.all(16),
 
@@ -82,7 +83,7 @@ class _HomePageState extends State<HomePage> {
                           style: TextStyle(color: Colors.white, fontSize: 16),
                         ),
                       ),
-                      // Icon(Icons.notifications, color: Colors.white),
+                      
                       Container(
                         height: 40,
                         width: 40,
@@ -103,84 +104,7 @@ class _HomePageState extends State<HomePage> {
                 const SizedBox(height: 12),
 
                 // Plan Section
-                Container(
-                  padding: const EdgeInsets.only(
-                    top: 4,
-                    bottom: 12,
-                    left: 4,
-                    right: 4,
-                  ),
-                  decoration: BoxDecoration(
-                    color: Colors.purple[50],
-                    borderRadius: BorderRadius.circular(29),
-                    border: Border.all(color: Colors.deepPurpleAccent),
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 4,
-                          vertical: 1,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Colors.deepPurple, // background color
-                          borderRadius: BorderRadius.circular(
-                            30,
-                          ), // rounded background
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(0.1),
-                              blurRadius: 6,
-                              offset: const Offset(0, 3),
-                            ),
-                          ],
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.only(left: 15),
-                              child: Text(
-                                "Free plan",
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-
-                            Chip(
-                              label: Text("Bid left: 3"),
-                              backgroundColor: Colors.white,
-                              labelStyle: TextStyle(
-                                color: Colors.deepPurple,
-                                fontWeight: FontWeight.bold,
-                              ),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const SizedBox(height: 5),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                          vertical: 4,
-                          horizontal: 10,
-                        ),
-                        child: const Text(
-                          "You have 3 bids left. Upgrade now to Bid more.",
-                          style: TextStyle(
-                            color: Colors.deepPurple,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                PlanSection(),
 
                 const SizedBox(height: 12),
 
@@ -208,7 +132,7 @@ class _HomePageState extends State<HomePage> {
 
           const SizedBox(height: 20),
 
-          // Categories
+          // Categories Heading
           Container(
             alignment: Alignment.centerLeft,
             padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -220,7 +144,7 @@ class _HomePageState extends State<HomePage> {
 
           const SizedBox(height: 10),
 
-          //Caategories list
+          //Categories list
           Expanded(
             child: ListView.builder(
               itemCount: categories.length,

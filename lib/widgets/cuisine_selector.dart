@@ -15,21 +15,13 @@ class CuisineSelector extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const Text(
-          "Please select your Cuisines",
-          style: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-            color: Colors.grey,
-          ),
-        ),
         Column(
           children: cuisines.map((c) {
             final name = c["name"] ?? "";
             final image = c["image"] ?? "";
 
             return InkWell(
-              onTap:  () => onChanged(name),
+              onTap: () => onChanged(name),
               child: Container(
                 margin: const EdgeInsets.symmetric(vertical: 6),
                 padding: const EdgeInsets.all(8),
@@ -68,7 +60,7 @@ class CuisineSelector extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                       ),
                     ),
-                    // SizedBox(width: 10,),
+                    
                     ClipRRect(
                       borderRadius: BorderRadius.circular(10),
                       child: Image.asset(
