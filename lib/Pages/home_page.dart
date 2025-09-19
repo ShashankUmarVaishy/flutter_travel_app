@@ -168,7 +168,7 @@ class _HomePageState extends State<HomePage> {
                       Padding(
                         padding: const EdgeInsets.symmetric(
                           vertical: 4,
-                          horizontal: 8,
+                          horizontal: 10,
                         ),
                         child: const Text(
                           "You have 3 bids left. Upgrade now to Bid more.",
@@ -219,6 +219,8 @@ class _HomePageState extends State<HomePage> {
           ),
 
           const SizedBox(height: 10),
+
+          //Caategories list
           Expanded(
             child: ListView.builder(
               itemCount: categories.length,

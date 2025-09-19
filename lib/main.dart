@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:front_end/Pages/home_page.dart';
 import 'package:front_end/utils/routes.dart';
-import 'package:front_end/Pages/login_page.dart';
+import 'package:front_end/Pages/banq_and_venues.dart';
 import 'package:front_end/widgets/themes.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 
 void main(){
   runApp(MyApp());
@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
       initialRoute: MyRoutes.homeRoute,
       routes: {
         MyRoutes.homeRoute: (context)=>HomePage(),
-        MyRoutes.loginRoute: (context)=>LoginPage(),
+        MyRoutes.venuesRoute: (context)=>VenueFormPage(),
       },
     );
   }
