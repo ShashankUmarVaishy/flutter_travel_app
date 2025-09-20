@@ -19,7 +19,7 @@ class NumberOfAdults extends StatelessWidget {
         TextFormField(
           keyboardType: TextInputType.number, 
           decoration: InputDecoration(
-            hintText: "Enter number of adults",
+            hintText: "Enter number of adults (default: 1)",
             contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 12),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8),

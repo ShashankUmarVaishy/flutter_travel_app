@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
       initialRoute: MyRoutes.homeRoute,
       routes: {
         MyRoutes.homeRoute: (context)=>HomePage(),
-        MyRoutes.venuesRoute: (context)=>VenueFormPage(),
+        MyRoutes.venueFormRoute: (context)=>VenueFormPage(),
       },
     );
   }

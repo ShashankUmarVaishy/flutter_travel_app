@@ -14,8 +14,7 @@ class EventTypeDropdown extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Column(
+    return Column(
         children: [
           SizedBox(height: 6),
           DropdownButtonFormField<String>(
@@ -48,7 +47,6 @@ class EventTypeDropdown extends StatelessWidget {
             onChanged: onChanged,
           ),
         ],
-      ),
-    );
+      );
   }
 }

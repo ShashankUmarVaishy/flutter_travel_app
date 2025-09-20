@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:front_end/Pages/banq_and_venues.dart';
+import 'package:front_end/widgets/snack_bar.dart';
 
 class CategoryCard extends StatelessWidget {
   final String imageUrl;
   final String title;
   final IconData logo_type;
+  final String? route;
   
   const CategoryCard({
     Key? key,
     required this.imageUrl,
     required this.title,
     required this.logo_type,
+    required this.route,
   }) : assert(imageUrl != "" && title != ""),
        super(key: key);
 
@@ -18,10 +21,11 @@ class CategoryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => const VenueFormPage()),
-        );
+        if(route!=null){
+          Navigator.pushNamed(context, route!);
+        }else{
+          showCustomSnackBar(context, "Under development", Colors.black45);
+        }
       },
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),

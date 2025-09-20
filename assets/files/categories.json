@@ -3,27 +3,32 @@
     {
       "title": "Travel & Stay",
       "imageUrl": "assets/images/travel.png",
-      "logotype" :"home"
+      "logotype": "home",
+      "route": null
     },
     {
       "title": "Banquets & Venues",
       "imageUrl": "assets/images/venues.png",
-      "logotype" :"beach_access"
+      "logotype": "beach_access",
+      "route": "/venue-form"
     },
     {
       "title": "Retail",
       "imageUrl": "assets/images/shopping.png",
-      "logotype" :"shopping_cart"
+      "logotype": "shopping_cart",
+      "route": null
     },
     {
       "title": "Food & Catering",
       "imageUrl": "assets/images/breakfast.png",
-      "logotype" :"restaurant"
+      "logotype": "restaurant",
+      "route": null
     },
     {
       "title": "Photography",
       "imageUrl": "assets/images/camera.png",
-      "logotype" :"camera"
+      "logotype": "camera",
+      "route": null
     }
   ]
 }
