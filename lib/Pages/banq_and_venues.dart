@@ -179,31 +179,23 @@ class _VenueFormPageState extends State<VenueFormPage> {
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   const SizedBox(height: 20),
                   Row(
                     children: [
-                      Container(
-                        height: 40,
-                        width: 40,
-                        decoration: BoxDecoration(
-                          color: Colors.white24,
-                          shape: BoxShape.circle,
+                      IconButton(
+                        icon: const Icon(Icons.arrow_back_ios_new),
+                        iconSize: 20,
+                        color: Colors.white,
+                        // Provides the circular background
+                        style: IconButton.styleFrom(
+                          backgroundColor: Colors.white24,
+                          fixedSize: const Size(40, 40),
                         ),
-                        child: Center(
-                          child: IconButton(
-                            icon: const Icon(
-                              Icons.arrow_back_ios,
-                              color: Colors.white,
-                              size: 20,
-                            ),
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                          ),
-                        ),
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
                       ),
 
                       const SizedBox(width: 15),
