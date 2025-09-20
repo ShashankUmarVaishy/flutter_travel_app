@@ -36,6 +36,24 @@ class _VenueFormPageState extends State<VenueFormPage> {
 
   Future<void> handleSubmit() async {
     if (isLoading) return;
+    if (eventType == null ||
+        country == null ||
+        state == null ||
+        city == null ||
+        eventDates.isEmpty ||
+        numberOfAdults == null ||
+        cateringPreference == null ||
+        cuisine == null ||
+        budget == null ||
+        budget!.isEmpty) {
+      showCustomSnackBar(
+        context,
+        "Please fill all required fields",
+        Colors.red,
+      );
+
+      return;
+    }
 
     setState(() => isLoading = true);
 
@@ -52,14 +70,13 @@ class _VenueFormPageState extends State<VenueFormPage> {
       "AmountCurrency": selectedCurrency,
       "OffersWithin": responseTime,
     };
-    
 
     try {
       final response = await http.post(
         Uri.parse(
           'https://flutter-travel-app-backend.onrender.com/api/v1/banq_and_ven/bid',
         ), // backend URL. same as code, deployed on render,
-          // might delay first request b/c using serverless service
+        // might delay first request b/c using serverless service
         headers: {'Content-Type': 'application/json'},
         body: jsonEncode(body),
       );
@@ -95,14 +112,18 @@ class _VenueFormPageState extends State<VenueFormPage> {
         // Error: keep form as is
         setState(() => isLoading = false);
 
-        showCustomSnackBar(context, data['message'] ?? 'Something went wrong', Colors.red, icon: Icons.error);
+        showCustomSnackBar(
+          context,
+          data['message'] ?? 'Something went wrong',
+          Colors.red,
+          icon: Icons.error,
+        );
       }
     } catch (e) {
       setState(() => isLoading = false);
       ScaffoldMessenger.of(
         context,
       ).showSnackBar(SnackBar(content: Text('Error: $e')));
-      
     }
   }
 
@@ -128,9 +149,9 @@ class _VenueFormPageState extends State<VenueFormPage> {
   ];
   final List<Map<String, String>> cuisines = [
     {"name": "Indian", "image": "assets/images/food.jpeg"},
-    {"name": "Italian", "image": "assets/images/food.jpeg"},
-    {"name": "Asian", "image": "assets/images/food.jpeg"},
-    {"name": "Mexican", "image": "assets/images/food.jpeg"},
+    {"name": "Italian", "image": "assets/images/brunch.jpeg"},
+    {"name": "Asian", "image": "assets/images/dinner.jpeg"},
+    {"name": "Mexican", "image": "assets/images/lunch.jpeg"},
   ];
 
   Future<void> pickDate() async {
@@ -150,7 +171,6 @@ class _VenueFormPageState extends State<VenueFormPage> {
   @override
   Widget build(BuildContext context) {
     return Material(
-      
       child: Scaffold(
         backgroundColor: Colors.deepPurple,
         key: _scaffoldKey,
