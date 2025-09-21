@@ -7,13 +7,17 @@ class CategoryCard extends StatelessWidget {
   final String title;
   final IconData logo_type;
   final String? route;
-  
+  final num? bid; // optional bid value from parent
+  final ValueChanged<num>? onBidChanged; // optional callback from parent
+
   const CategoryCard({
     Key? key,
     required this.imageUrl,
     required this.title,
     required this.logo_type,
     required this.route,
+    this.bid,
+    this.onBidChanged,
   }) : assert(imageUrl != "" && title != ""),
        super(key: key);
 
@@ -21,9 +25,20 @@ class CategoryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        if(route!=null){
-          Navigator.pushNamed(context, route!);
-        }else{
+        if (route != null) {
+          // handle VenueFormPage route
+          if (route == "/venue-form") {
+            if (bid != null && onBidChanged != null) {
+              Navigator.pushNamed(
+                context,
+                route!,
+                arguments: {'bid': bid!, 'onBidChanged': onBidChanged!},
+              );
+            } else {
+              Navigator.pushNamed(context, route!);
+            }
+          }
+        } else {
           showCustomSnackBar(context, "Under development", Colors.black45);
         }
       },

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:front_end/service/banquet_and_venues/post_bid.dart';
 import 'package:front_end/widgets/snack_bar.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 import 'package:front_end/widgets/adult_field.dart';
 import 'package:front_end/widgets/budget_field.dart';
 import 'package:front_end/widgets/catering_options.dart';
@@ -11,7 +10,13 @@ import 'package:front_end/widgets/event_type_dropdown.dart';
 import 'package:front_end/widgets/response_time_selector.dart';
 
 class VenueFormPage extends StatefulWidget {
-  const VenueFormPage({super.key});
+  final num bid;
+  final ValueChanged<num> onBidChanged;
+  const VenueFormPage({
+    required this.bid,
+    required this.onBidChanged,
+    super.key,
+  });
 
   @override
   State<VenueFormPage> createState() => _VenueFormPageState();
@@ -33,6 +38,12 @@ class _VenueFormPageState extends State<VenueFormPage> {
   bool isLoading = false;
   bool isFastResponse = false;
   final _scaffoldKey = GlobalKey<ScaffoldState>();
+  late num remainingBids;
+  @override
+  void initState() {
+    super.initState();
+    remainingBids = widget.bid; // copy from parent
+  }
 
   Future<void> handleSubmit() async {
     if (isLoading) return;
@@ -51,9 +62,20 @@ class _VenueFormPageState extends State<VenueFormPage> {
         "Please fill all required fields",
         Colors.red,
       );
-
       return;
     }
+    if (remainingBids <= 0) {
+        showCustomSnackBar(context, "You Don't have enough bids", Colors.red);
+        return;
+      }
+      if (remainingBids < 2 && isFastResponse) {
+        showCustomSnackBar(
+          context,
+          "You Don't have enough bids for fast response, but you can submit a normal one",
+          Colors.blue,
+        );
+        return;
+      }
 
     setState(() => isLoading = true);
 
@@ -72,20 +94,18 @@ class _VenueFormPageState extends State<VenueFormPage> {
     };
 
     try {
-      final response = await http.post(
-        Uri.parse(
-          'https://flutter-travel-app-backend.onrender.com/api/v1/banq_and_ven/bid',
-        ), // backend URL. same as code, deployed on render,
-        // might delay first request b/c using serverless service
-        headers: {'Content-Type': 'application/json'},
-        body: jsonEncode(body),
-      );
+      final result = await BanquetAndVenueService.postBid(body);
+      final statusCode = result["statusCode"];
+      final data = result["data"];
 
-      final data = jsonDecode(response.body);
-
-      if (response.statusCode == 200 || response.statusCode == 201) {
+      if (statusCode == 200 || statusCode == 201) {
         // Success: reset form
         setState(() {
+          if (isFastResponse) {
+            remainingBids -= 2;
+          } else {
+            remainingBids--;
+          }
           eventType = null;
           country = null;
           state = null;
@@ -98,7 +118,7 @@ class _VenueFormPageState extends State<VenueFormPage> {
           responseTime = "2 Days";
           isLoading = false;
         });
-
+        widget.onBidChanged(remainingBids);
         showCustomSnackBar(
           context,
           "Bid submitted successfully!",
@@ -256,6 +276,7 @@ class _VenueFormPageState extends State<VenueFormPage> {
                               onChanged: (val) =>
                                   setState(() => eventType = val),
                             ),
+
                             const SizedBox(height: 20),
 
                             Text(
@@ -272,6 +293,7 @@ class _VenueFormPageState extends State<VenueFormPage> {
                               items: countries,
                               onChanged: (val) => setState(() => country = val),
                             ),
+
                             const SizedBox(height: 20),
 
                             Text(
@@ -287,7 +309,9 @@ class _VenueFormPageState extends State<VenueFormPage> {
                               items: states,
                               onChanged: (val) => setState(() => state = val),
                             ),
+
                             const SizedBox(height: 20),
+
                             Text(
                               "City",
                               style: TextStyle(
@@ -301,6 +325,7 @@ class _VenueFormPageState extends State<VenueFormPage> {
                               items: cities,
                               onChanged: (val) => setState(() => city = val),
                             ),
+
                             const SizedBox(height: 20),
 
                             Text(
@@ -318,6 +343,7 @@ class _VenueFormPageState extends State<VenueFormPage> {
                             ),
 
                             const SizedBox(height: 20),
+
                             Text(
                               "Number of Adults",
                               style: TextStyle(

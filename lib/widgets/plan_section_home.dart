@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
 class PlanSection extends StatelessWidget {
-  const PlanSection({super.key});
+  final num bid;
+  const PlanSection({
+    required this.bid,
+    super.key
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +58,7 @@ class PlanSection extends StatelessWidget {
                     border: Border.all(color: Colors.deepPurple),
                   ),
                   child: Text(
-                    "Bid left: 3",
+                    "Bid left: ${bid}",
                     style: TextStyle(
                       color: Colors.deepPurple,
                       fontWeight: FontWeight.bold,

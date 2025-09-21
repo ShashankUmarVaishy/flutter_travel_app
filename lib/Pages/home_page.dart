@@ -15,6 +15,8 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<dynamic> categories = [];
+  String searchText = "";
+  num bid = 3;
 
   @override
   void initState() {
@@ -42,8 +44,14 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final filteredCategories = searchText.isEmpty
+        ? categories
+        : categories.where((cat) {
+            final title = (cat['title'] as String).toLowerCase();
+            return title.contains(searchText.toLowerCase());
+          }).toList();
+
     return Material(
-      
       child: Scaffold(
         body: Column(
           children: [
@@ -56,7 +64,7 @@ class _HomePageState extends State<HomePage> {
                   bottomLeft: Radius.circular(25),
                   bottomRight: Radius.circular(25),
                 ),
-        
+
                 boxShadow: [
                   BoxShadow(
                     color: Colors.grey.withOpacity(0.2),
@@ -68,26 +76,32 @@ class _HomePageState extends State<HomePage> {
               child: Column(
                 children: [
                   const SizedBox(height: 22),
-                   
+
                   //User Header
                   User_Header(),
-        
+
                   const SizedBox(height: 12),
-        
+
                   // Plan Section
-                  PlanSection(),
-        
+                  PlanSection(bid: bid),
+
                   const SizedBox(height: 12),
-        
+
                   // Search Bar
-                  MySearchBar(),
-        
+                  MySearchBar(
+                    value: searchText,
+                    onChanged: (val) {
+                      setState(() {
+                        searchText = val;
+                      });
+                    },
+                  ),
                 ],
               ),
             ),
-        
+
             const SizedBox(height: 20),
-        
+
             // CAtegory text/ heading
             Container(
               alignment: Alignment.centerLeft,
@@ -97,28 +111,33 @@ class _HomePageState extends State<HomePage> {
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
             ),
-        
+
             const SizedBox(height: 10),
-        
+
             // Category List
             Expanded(
               child: ListView.builder(
-                itemCount: categories.length,
+                itemCount: filteredCategories.length,
                 padding: const EdgeInsets.all(8),
                 itemBuilder: (context, index) {
-                  final cat = categories[index];
+                  final cat = filteredCategories[index];
                   return CategoryCard(
                     imageUrl: cat['imageUrl'],
                     title: cat['title'],
                     logo_type: iconMapping[cat['logotype']] ?? Icons.bolt_sharp,
                     route: cat['route'],
+                    bid: bid,
+                    onBidChanged: (newBid) {
+                      setState(() {
+                        bid = newBid; 
+                      });
+                    },
                   );
                 },
               ),
             ),
-        
+
             const SizedBox(height: 20),
-        
           ],
         ),
       ),
